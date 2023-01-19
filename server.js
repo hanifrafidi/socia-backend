@@ -47,6 +47,11 @@ app.use('/post', PostRoute)
 const UserRoute = require('./routes/user')
 app.use('/user', UserRoute)
 
-app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+// app.listen(process.env.PORT || 3000, function(){
+  // console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+// });
+
+app.use(function (err, req, res, _next) {
+  console.error(err.stack);
+  res.status(500).json('Something broke!');
 });
